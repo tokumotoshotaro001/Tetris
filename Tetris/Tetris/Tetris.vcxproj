@@ -135,11 +135,14 @@
     <ClCompile Include="EndScene.cpp" />
     <ClCompile Include="FreamControl.cpp" />
     <ClCompile Include="GameMainScene.cpp" />
+    <ClCompile Include="InputControl.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndScene.h" />
     <ClInclude Include="FreamControl.h" />
+    <ClInclude Include="GameMainScene.h" />
+    <ClInclude Include="InputControl.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
