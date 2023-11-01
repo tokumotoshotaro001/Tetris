@@ -195,5 +195,9 @@ int GetExitButton(void)
 {
 	int ret = FALSE;
 	
-	if(())
+	if ((GetButtonDown(XINPUT_BUTTON_BACK) == TRUE) || (CheckHitKey(KEY_INPUT_ESCAPE) == TRUE))
+	{
+		ret = TRUE;
+	}
+	return ret;
 }
