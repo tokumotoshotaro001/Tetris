@@ -459,5 +459,49 @@ void turn_block(int clockwise)
 		}
 
 		//ブロック回転
+		for (i = 0; i < BLOCK_TROUT_SIZE; i++)
+		{
+			for (j = 0; j < BLOCK_TROUT_SIZE; j++)
+			{
+				DropBlock[i][j] = temp[i][j];
+			}
+		}
+
+		//壁の補修処理
+		if (check_overlap(DropBlock_X, DropBlock_Y) && DropBlock_X >= E_BLOCK_WALL)
+		{
+			DropBlock_X--;
+		}
+		if (check_overlap(DropBlock_X, DropBlock_Y) && DropBlock_X >= E_BLOCK_EMPTY)
+		{
+			DropBlock_X++;
+		}
+	} while (check_overlap(DropBlock_X, DropBlock_Y) == FALSE);
+
+	PlaySoundMem(SoundEffect[2], DX_PLAYTYPE_BACK, TRUE);
+}
+
+/********************************************
+* ブロック機能：範囲外チェック処理
+* 引数：落下ブロックの座標（x、y）
+* 戻り値：TRUE(範囲内),FALSE(範囲外)
+********************************************/
+int check_overlap(int x, int y)
+{
+	int i, j;	//ループカウンタ
+
+	for (i = 0; i < BLOCK_TROUT_SIZE; i++)
+	{
+		for (j = 0; j < BLOCK_TROUT_SIZE; j++)
+		{
+			if (DropBlock[i][j] != E_BLOCK_EMPTY)
+			{
+				if (Field[i + y][j + x] != E_BLOCK_EMPTY)
+				{
+					return FALSE;
+				}
+			}
+		}
 	}
+	return TRUE;
 }
