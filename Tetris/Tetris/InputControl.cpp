@@ -4,7 +4,7 @@
 /********************************************
 * マクロ定義
 ********************************************/
-#define XINPUT_BUTTON_MAX(16)  //コントローラーのボタン数
+#define XINPUT_BUTTON_MAX (16)  //コントローラーのボタン数
 
 /********************************************
 * 型定義
@@ -37,7 +37,7 @@ void InputControl_Initialize(void)
 	int i;  //ループカウンタ
 
 	//入力状態の初期化
-	for (i = 0; i < XIPUT_BUTTON_MAX; i++)
+	for (i = 0; i < XINPUT_BUTTON_MAX; i++)
 	{
 		button_state[i] = E_NONE;
 	}

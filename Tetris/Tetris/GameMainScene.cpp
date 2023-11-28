@@ -68,7 +68,7 @@ void GameMainScene_Update(void)
 	//ê∂ê¨Ç≈Ç´Ç»Ç≠Ç»Ç¡ÇΩÇÁ
 	if (Get_GenerateFlg() != TRUE)
 	{
-		PlaySoundMem(GemaOver_sound, DX_PLAYTYPE_BACK, FALSE);
+		PlaySoundMem(GameOver_sound, DX_PLAYTYPE_BACK, FALSE);
 	}
 }
 

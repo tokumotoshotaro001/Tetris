@@ -3,7 +3,7 @@
 ********************************************/
 #include "DxLib.h"
 #include "FreamControl.h"
-#include "SceneManrger.h"
+#include "SceneManager.h"
 #include "InputControl.h"
 
 /********************************************
@@ -50,11 +50,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPprevInstance, 
 		return -1;
 	}
 
-	//フレーム制御機能初期化
+	//フレーム制御機能初期化処理
 	FreamControl_Initialize();
 
-	//シーン管理制御機能初期化
-	SceneManager_Initialize();
+	//シーン管理制御機能初期化処理
+	SceneManager_Initialize(E_TITLE);
 
 	//入力制御機能初期化処理
 	InputControl_Initialize();

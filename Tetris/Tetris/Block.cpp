@@ -157,8 +157,8 @@ int Block_Initialize(void)
 	{
 		if (SoundEffect[i] == -1)
 		{
-			ret = -1
-				break;
+			ret = -1;
+			break;
 		}
 	}
 	return ret;
@@ -504,4 +504,64 @@ int check_overlap(int x, int y)
 		}
 	}
 	return TRUE;
+}
+
+/********************************************
+* ブロック機能：着地したブロックを固定済みにする処理
+* 引数：落下ブロックの座標（x、y）
+* 戻り値：なし
+********************************************/
+void lock_block(int x, int y)
+{
+	int i, j;	//ループカウンタ
+
+	for (i = 0; i < BLOCK_TROUT_SIZE; i++)
+	{
+		for (j = 0; j < BLOCK_TROUT_SIZE; j++)
+		{
+			if (DropBlock[i][j] != E_BLOCK_EMPTY)
+			{
+				Field[y + i][x + j] = DropBlock[i][j];
+			}
+		}
+	}
+	PlaySoundMem(SoundEffect[1], DX_PLAYTYPE_BACK, TRUE);
+}
+
+/********************************************
+* ブロック機能：ブロックの横一列確認処理
+* 引数：なし
+* 戻り値：なし
+********************************************/
+void check_line(void)
+{
+	int i, j, k;	//ループカウンタ
+
+	for (i = 0; i < FIELD_HEIGHT - 1; i++)
+	{
+		for (i = 0; i < FIELD_WIDTH - 1; i++)
+		{
+			//行の途中が開いているか?
+			if (Field[i][j] == E_BLOCK_EMPTY)
+			{
+				break;
+			}
+		}
+		//一列そろっていたら、カウントを増やし、1段下げる
+		if (j >= FIELD_WIDTH)
+		{
+			//カウントを増加
+			DeleteLine++;
+
+			//１段下げる
+			for (k = i; k > 0; k--)
+			{
+				for (j = 1; j < FIELD_WIDTH; i++)
+				{
+					Field[k][j] = Field[k - 1][j];
+				}
+			}
+			PlaySoundMem(SoundEffect[0], DX_PLAYTYPE_BACK, TRUE);
+		}
+	}
 }

@@ -45,7 +45,7 @@ void EndScene_Update(void)
 * ˆø”F‚È‚µ
 * –ß‚è’lF‚È‚µ
 ********************************************/
-void Get_EndTime(void)
+int Get_EndTime(void)
 {
 	if (wait_count > 300)
 	{
