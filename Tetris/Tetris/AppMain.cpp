@@ -9,9 +9,9 @@
 /********************************************
 * É}ÉNÉçíËã`
 ********************************************/
-#define SCREE_HEIGHT (720)
-#define SCREE_WIDTH (1280)
-#define SCREE_COLORBIT (32)
+#define SCREEN_HEIGHT (720)
+#define SCREEN_WIDTH (1280)
+#define SCREEN_COLORBIT (32)
 #define FONT_SIZE (20)
 
 /********************************************

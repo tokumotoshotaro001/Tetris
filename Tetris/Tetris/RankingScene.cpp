@@ -29,21 +29,21 @@ typedef struct
 /********************************************
 * グローバル変数宣言
 ********************************************/
-T_RANKING Ranking_data[RANKING_MAX]; //ランキングデータ
+T_RANKING Ranking_Data[RANKING_MAX]; //ランキングデータ
 T_RANKING New_Score; //新しいスコアデータ
 int DispMode; //表示モード
 
-T_CURSOR Cursor;
+T_CURSOR Cursor;	//カーソル用変数
 int name_num;
 
 /********************************************
 * プロトタイプ宣言
 ********************************************/
-void file_read(void);
-void file_write(void);
-void ranking_sort(void);
-void ranking_input_name(void);
-void ranking_input_name_draw(void);
+void file_read(void);	//ファイル読み込み
+void file_write(void);	//ファイル書き込み
+void ranking_sort(void);	//ランキングソート処理
+void ranking_input_name(void);	//名前入力処理
+void ranking_input_name_draw(void);	//名前入力描画処理
 
 /********************************************
 * ランキング画面：初期化処理
@@ -53,7 +53,9 @@ void ranking_input_name_draw(void);
 int RankingScene_Initialize(void)
 {
 	int ret = 0;
+
 	file_read();
+
 	switch (DispMode)
 	{
 	case RANKING_INPUT_MODE:
@@ -106,9 +108,9 @@ void RankingScene_Draw(void)
 		break;
 	case RANKING_DISP_MODE:
 	default:
-		for(i=0;i<RANKING_MAX;i++)
+		for(i=0; i<RANKING_MAX; i++)
 		{
-			DrawFormatString(20, 10 + (i * 25), GetColor(255, 255, 255), "%2d,%10s,%10d", Ranking_Data[i].rank, Ranking_Data[i].name, Ranking_Data[i].scere);
+			DrawFormatString(20, 10 + (i * 25), GetColor(255, 255, 255), "%2d,%10s,%10d", Ranking_Data[i].rank, Ranking_Data[i].name, Ranking_Data[i].score);
 		}
 		break;
 	}
@@ -129,7 +131,7 @@ void Set_RankingMode(int mode)
 * 引数：なし
 * 戻り値：なし
 ********************************************/
-void Set_RankingMode(int score)
+void Set_RankingScore(int score)
 {
 	New_Score.score = score;
 }
@@ -150,14 +152,14 @@ void file_read(void)
 	if (fp == NULL)
 	{
 		OutputDebugString("ファイルが読み込めません");
-		OutputDebugString("ファイルを生成します")
+		OutputDebugString("ファイルを生成します");
 		file_write();
 	}
 	else
 	{
 		for (i = 0; i < RANKING_MAX; i++)
 		{
-			fscanf_s(fp, "%2d,%[^,],%10d/n", &Ranking_Data[i].rank, Ranking_Data[i].name, RANKING_NAME_LEN, &Ranking_Data[i].score);
+			fscanf_s(fp, "%2d,%[^,],%10d\n", &Ranking_Data[i].rank, Ranking_Data[i].name, RANKING_NAME_LEN, &Ranking_Data[i].score);
 		}
 		fclose(fp);
 	}
@@ -184,7 +186,7 @@ void file_write(void)
 	{
 		for (i = 0; i < RANKING_MAX; i++)
 		{
-			fprintf(fp, "%2d,%s,%10d/n", &Ranking_Data[i].rank, Ranking_Data[i].name, Ranking_Data[i].score);
+			fprintf(fp, "%2d,%s,%10d\n", Ranking_Data[i].rank, Ranking_Data[i].name, Ranking_Data[i].score);
 		}
 		fclose(fp);
 	}
@@ -275,7 +277,7 @@ void ranking_input_name(void)
 			else if (Cursor.x == 10)
 			{
 				name_num--;
-				New_Score.name[name_num++] = c;
+				New_Score.name[name_num++] = '`0';
 			}
 			else
 			{

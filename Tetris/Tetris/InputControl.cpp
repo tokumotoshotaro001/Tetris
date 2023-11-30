@@ -12,7 +12,7 @@
 enum KEY_STATE
 {
 	E_NONE,  //未入力
-	ECLICK,  //押した瞬間
+	E_CLICK,  //押した瞬間
 	E_PRESS,  //押し続けてる
 	E_RELEASED,  //離した
 	E_KEY_STATE_MAX
@@ -21,7 +21,7 @@ enum KEY_STATE
 /********************************************
 * 変数宣言
 ********************************************/
-KEY_STATE button_state[XINPUT_BUTTON_MAX];
+KEY_STATE button_state[XINPUT_BUTTON_MAX];	//各ボタン入力状態
 
 /********************************************
 * プロトタイプ宣言
@@ -50,11 +50,11 @@ void InputControl_Initialize(void)
 ********************************************/
 void InputControl_Update(void)
 {
-	int i;
-	XINPUT_STATE input_controller;
+	int i;	//ループカウンタ
+	XINPUT_STATE input_controller;	//コントローラー入力情報
 
 	//コントローラーの入力を取得
-	GetjoypadXInputState(DX_INPUT_PAD1, &input_controller);
+	GetJoypadXInputState(DX_INPUT_PAD1, &input_controller);
 
 	//入力状態の更新
 	for (i = 0; i < XINPUT_BUTTON_MAX; i++)

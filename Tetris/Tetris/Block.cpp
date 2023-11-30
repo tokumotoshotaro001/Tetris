@@ -57,7 +57,7 @@ const int C_BLOCK_TABLE[BLOCK_TYPE_MAX][BLOCK_TROUT_SIZE][BLOCK_TROUT_SIZE] = {
 	{
 	{0,0,0,0},
 	{3,0,0,0},
-	{3,3,3,3},
+	{3,3,3,0},
 	{0,0,0,0},
 	},
 	{
@@ -98,7 +98,8 @@ int DropBlock_X;	//落ちるブロックのX座標
 int DropBlock_Y;	//落ちるブロックのY座標
 int WaitTime;	//待機時間
 int Stock_Flg;	//ストックフラグ
-int Generate_Fig;	//生成フラグ
+int Generate_Flg;	//生成フラグ
+int DeleteLine;	//消したラインの数
 int SoundEffect[3];	//SE
 
 /********************************************
@@ -108,7 +109,7 @@ void create_field(void);	//フィールドの生成処理
 void create_block(void);	//ブロックの生成処理
 void move_block(void);	//ブロックの移動処理
 void change_block(void);	//ストック交換処理
-void turn_block(void);	//ブロック回転処理
+void turn_block(int clockwise);	//ブロック回転処理
 int check_overlap(int x, int y);	//範囲外チェック処理
 void lock_block(int x, int y);	//着地したブロックを固定済みに変更する処理
 void check_line(void);	//ブロックの横一列確認処理
@@ -290,7 +291,7 @@ void create_field(void)
 	int i, j;	//ループカウンタ
 
 	//フィールドの生成
-	for (i = 0; i < FIELD_HEIGHT; j++)
+	for (i = 0; i < FIELD_HEIGHT; i++)
 	{
 		for (j = 0; j < FIELD_WIDTH; j++)
 		{
@@ -337,7 +338,7 @@ void create_block(void)
 	//生成できなかった時、ゲームオーバーに遷移する
 	if (check_overlap(DropBlock_X, DropBlock_Y) == FALSE)
 	{
-		Generate_Fig = FALSE;
+		Generate_Flg = FALSE;
 	}
 }
 
@@ -539,7 +540,7 @@ void check_line(void)
 
 	for (i = 0; i < FIELD_HEIGHT - 1; i++)
 	{
-		for (i = 0; i < FIELD_WIDTH - 1; i++)
+		for (j = 0; j < FIELD_WIDTH -1; j++)
 		{
 			//行の途中が開いているか?
 			if (Field[i][j] == E_BLOCK_EMPTY)
@@ -556,7 +557,7 @@ void check_line(void)
 			//１段下げる
 			for (k = i; k > 0; k--)
 			{
-				for (j = 1; j < FIELD_WIDTH; i++)
+				for (j = 1; j < FIELD_WIDTH; j++)
 				{
 					Field[k][j] = Field[k - 1][j];
 				}

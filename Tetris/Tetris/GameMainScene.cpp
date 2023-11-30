@@ -48,7 +48,7 @@ int GameMainScene_Initialize(void)
 		ret = -1;
 	}
 
-	return ret - 1;
+	return ret;
 }
 
 /********************************************
@@ -69,6 +69,8 @@ void GameMainScene_Update(void)
 	if (Get_GenerateFlg() != TRUE)
 	{
 		PlaySoundMem(GameOver_sound, DX_PLAYTYPE_BACK, FALSE);
+		Change_Scene(E_RANKING);
+		StopSoundMem(BackGround_sound);
 	}
 }
 

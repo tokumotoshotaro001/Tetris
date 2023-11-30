@@ -1,6 +1,6 @@
 #include "TitleScene.h"
 #include "InputControl.h"
-#include "SceneManrger.h"
+#include "SceneManager.h"
 #include "DxLib.h"
 
 /********************************************
@@ -22,7 +22,7 @@ enum
 * ÉOÉçÅ[ÉoÉãïœêîêÈåæ
 ********************************************/
 
-int cursor_numbar;
+int cursor_number;
 int sounds[E_SOUND_MAX];
 
 /********************************************
@@ -72,8 +72,8 @@ void TitleScene_Update(void)
 
 	if (GetButtonDown(XINPUT_BUTTON_B) == TRUE)
 	{
-		StopSoundMem(sounds[E_BUTTON_BGM]);
-		PlaySoundMem(sounds[E_TITLE_SE_SELECT], DX_PLAYTYPE_BASK, FALSE);
+		StopSoundMem(sounds[E_TITLE_BGM]);
+		PlaySoundMem(sounds[E_TITLE_SE_SELECT], DX_PLAYTYPE_BACK, FALSE);
 		switch (cursor_number)
 		{
 		case 0:
@@ -82,7 +82,8 @@ void TitleScene_Update(void)
 		case 1:
 			Change_Scene(E_RANKING);
 			break;
-		case 2:default:
+		case 2:
+		default:
 			Change_Scene(E_END);
 			break;
 
