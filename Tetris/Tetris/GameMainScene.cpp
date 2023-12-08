@@ -63,6 +63,7 @@ void GameMainScene_Update(void)
 
 	//ブロック機能の再生
 	Block_Update();
+
 	Score = Get_Line() * 50;
 
 	//生成できなくなったら

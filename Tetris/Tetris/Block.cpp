@@ -247,7 +247,7 @@ void Block_Draw(void)
 		{
 			//次のブロックを描画
 			DrawGraph(BLOCK_SIZE * j + BLOCK_NEXT_POS_X, BLOCK_SIZE * i + BLOCK_NEXT_POS_Y, BlockImage[Next[i][j]], TRUE);
-			//ストックされたブロック
+			//ストックされたブロックを描画
 			DrawGraph(BLOCK_SIZE * j + BLOCK_STOCK_POS_X, BLOCK_SIZE * i + BLOCK_STOCK_POS_Y, BlockImage[Stock[i][j]], TRUE);
 		}
 	}
@@ -257,6 +257,16 @@ void Block_Draw(void)
 		for (j = 0; j < BLOCK_TROUT_SIZE; j++)
 		{
 			DrawGraph((DropBlock_X + j) * BLOCK_SIZE, (DropBlock_Y + i) * BLOCK_SIZE, BlockImage[DropBlock[i][j]], TRUE);
+		}
+	}
+
+
+	for (i = 0; i < FIELD_HEIGHT; i++)
+	{
+		for (j = 0; j < FIELD_WIDTH; j++)
+		{
+	
+			DrawFormatString(j * BLOCK_SIZE, i * BLOCK_SIZE,0xFFFFFF,"%d", Field[i][j]);
 		}
 	}
 }
@@ -343,7 +353,7 @@ void create_block(void)
 }
 
 /********************************************
-* ブロック機能：フィールドの移動処理
+* ブロック機能：ブロックの移動処理
 * 引数：なし
 * 戻り値：なし
 ********************************************/
@@ -473,7 +483,7 @@ void turn_block(int clockwise)
 		{
 			DropBlock_X--;
 		}
-		if (check_overlap(DropBlock_X, DropBlock_Y) && DropBlock_X >= E_BLOCK_EMPTY)
+		if (check_overlap(DropBlock_X, DropBlock_Y) && DropBlock_X <= E_BLOCK_EMPTY)
 		{
 			DropBlock_X++;
 		}
