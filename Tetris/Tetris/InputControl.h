@@ -16,7 +16,7 @@
 void InputControl_Initialize(void);  //‰Šú‰»ˆ—
 void InputControl_Update(void);  //XVˆ—
 
-int GetButton(int botton);  //‰Ÿ‚³‚ê‚Ä‚¢‚é‚©”»’èˆ—
+int GetButton(int button);  //‰Ÿ‚³‚ê‚Ä‚¢‚é‚©”»’èˆ—
 int GetButtonDown(int button);  //‰Ÿ‚µ‚½uŠÔ‚©”»’èˆ—
 int GetButtonUp(int button);  //—£‚µ‚½‚©”»’èˆ—
 

@@ -39,9 +39,9 @@ int TitleScene_Initialize(void)
 {
 	int ret = 0;
 	cursor_number = 0;
-	sounds[E_TITLE_BGM] = LoadSoundMem("sound/BGM041.ogg");
-	sounds[E_TITLE_SE_CURSOR] = LoadSoundMem("sound/SE1.mp3");
-	sounds[E_TITLE_SE_SELECT] = LoadSoundMem("sound/SE2.mp3");
+	sounds[E_TITLE_BGM] = LoadSoundMem("sounds/BGM041.ogg");
+	sounds[E_TITLE_SE_CURSOR] = LoadSoundMem("sounds/SE1.mp3");
+	sounds[E_TITLE_SE_SELECT] = LoadSoundMem("sounds/SE2.mp3");
 
 	ChangeVolumeSoundMem(120, sounds[E_TITLE_SE_CURSOR]);
 	ChangeVolumeSoundMem(80, sounds[E_TITLE_SE_SELECT]);
@@ -91,6 +91,18 @@ void TitleScene_Update(void)
 	}
 
 	if (GetButtonDown(XINPUT_BUTTON_DPAD_UP) == TRUE)
+	{
+		PlaySoundMem(sounds[E_TITLE_SE_CURSOR], DX_PLAYTYPE_NORMAL, FALSE);
+		if (cursor_number <= 0)
+		{
+			cursor_number = 0;
+		}
+		else
+		{
+			cursor_number--;
+		}
+	}
+	if (GetButtonUp(XINPUT_BUTTON_DPAD_DOWN) == TRUE)
 	{
 		PlaySoundMem(sounds[E_TITLE_SE_CURSOR], DX_PLAYTYPE_NORMAL, FALSE);
 		if (cursor_number >= 2)

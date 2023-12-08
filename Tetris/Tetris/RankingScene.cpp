@@ -246,9 +246,23 @@ void ranking_input_name(void)
 			Cursor.x--;
 		}
 	}
+	if (GetButtonDown(XINPUT_BUTTON_DPAD_RIGHT) == TRUE)
+	{
+		if (Cursor.x < 12)
+		{
+			Cursor.x++;
+		}
+	}
 	if (GetButtonDown(XINPUT_BUTTON_DPAD_UP) == TRUE)
 	{
-		if (Cursor.y < 4)
+		if (Cursor.y > 0)
+		{
+			Cursor.y--;
+		}
+	}
+	if (GetButtonDown(XINPUT_BUTTON_DPAD_DOWN) == TRUE)
+	{
+		if (Cursor.x < 4)
 		{
 			Cursor.y++;
 		}
@@ -277,7 +291,7 @@ void ranking_input_name(void)
 			else if (Cursor.x == 10)
 			{
 				name_num--;
-				New_Score.name[name_num++] = '`0';
+				New_Score.name[name_num++] = '\0';
 			}
 			else
 			{
