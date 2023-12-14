@@ -172,6 +172,7 @@ int Block_Initialize(void)
 ********************************************/
 void Block_Update(void)
 {
+	//ブロックの移動処理
 	move_block();
 
 	//ブロックのストック
@@ -261,14 +262,14 @@ void Block_Draw(void)
 	}
 
 
-	for (i = 0; i < FIELD_HEIGHT; i++)
+	/*for (i = 0; i < FIELD_HEIGHT; i++)
 	{
 		for (j = 0; j < FIELD_WIDTH; j++)
 		{
 	
 			DrawFormatString(j * BLOCK_SIZE, i * BLOCK_SIZE,0xFFFFFF,"%d", Field[i][j]);
 		}
-	}
+	}*/
 }
 
 /********************************************
@@ -282,7 +283,7 @@ int Get_GenerateFlg(void)
 }
 
 /********************************************
-* ブロック機能：消したラインの取得処理
+* ブロック機能：消したラインの数取得処理
 * 引数：なし
 * 戻り値：消したラインの数
 ********************************************/
