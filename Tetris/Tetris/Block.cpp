@@ -363,7 +363,7 @@ void move_block(void)
 	//左入力時
 	if (GetButtonDown(XINPUT_BUTTON_DPAD_LEFT))
 	{
-		if (check_overlap(DropBlock_X - 1, DropBlock_Y) == TRUE);
+		if (check_overlap(DropBlock_X - 1, DropBlock_Y) == TRUE)
 		{
 			DropBlock_X--;
 		}
@@ -372,7 +372,7 @@ void move_block(void)
 	//右入力時
 	if (GetButtonDown(XINPUT_BUTTON_DPAD_RIGHT))
 	{
-		if (check_overlap(DropBlock_X + 1, DropBlock_Y) == TRUE);
+		if (check_overlap(DropBlock_X+1, DropBlock_Y) == TRUE)
 		{
 			DropBlock_X++;
 		}
@@ -381,7 +381,7 @@ void move_block(void)
 	//上入力時（ハードドロップ処理）
 	if (GetButtonDown(XINPUT_BUTTON_DPAD_UP))
 	{
-		while (check_overlap(DropBlock_X, DropBlock_Y + 1) == TRUE);
+		while (check_overlap(DropBlock_X, DropBlock_Y + 1) == TRUE)
 		{
 			DropBlock_Y++;
 		}
@@ -390,7 +390,7 @@ void move_block(void)
 	//下入力時（ソフトドロップ処理）
 	if (GetButtonDown(XINPUT_BUTTON_DPAD_DOWN))
 	{
-		if (check_overlap(DropBlock_X, DropBlock_Y + 1) == TRUE);
+		if (check_overlap(DropBlock_X, DropBlock_Y + 1) == TRUE)
 		{
 			DropBlock_Y++;
 		}
@@ -551,7 +551,7 @@ void check_line(void)
 
 	for (i = 0; i < FIELD_HEIGHT - 1; i++)
 	{
-		for (j = 0; j < FIELD_WIDTH -1; j++)
+		for (j = 1; j < FIELD_WIDTH; j++)
 		{
 			//行の途中が開いているか?
 			if (Field[i][j] == E_BLOCK_EMPTY)
